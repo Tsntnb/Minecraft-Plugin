@@ -1,54 +1,106 @@
-# Project README
+## Installing the Plugin
 
-Welcome to this project! This is a placeholder README file that will help you get started with documenting your project.
+1. Stop your Minecraft server
+2. Copy the JAR file to your server's `plugins/` folder
+3. Start your server
+4. Configure the plugin (see Configuration section below)
 
-## Table of Contents
-- [Project Description](#project-description)
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+## Configuration
 
-## Project Description
-This project is designed to serve as a template or starting point for your development work. The purpose and functionality of this project will be defined by your specific requirements.
+The plugin needs to be configured with your specific details:
 
-## Features
-- Feature 1
-- Feature 2
-- Feature 3
+1. RCON connection details:
+   - Host: Your server's IP (default: 127.0.0.1)
+   - Port: RCON port (default: 25575)
+   - Password: Your RCON password
 
-## Installation
-To set up this project locally, follow these steps:
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/your-repo-name.git
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd your-repo-name
-   ```
-3. Install dependencies (if applicable):
-   ```bash
-   # Add installation commands as needed for your project
-   ```
+2. Telegram bot details:
+   - Bot token: From @BotFather
+   - Bot username: Your bot's username
 
 ## Usage
-Instructions on how to use the project would go here. Include examples and code snippets as needed.
+
+Once installed and configured:
+
+1. Use the command `/codeforbot` to generate the monthly access code
+2. Share this code with the two users who need access to the Telegram bot
+3. The code remains constant throughout the month and changes at the beginning of each new month
+
+## Commands
+
+- `/codeforbot` - Generates the monthly access code for the Telegram bot
+  - Permission: `telegramrpg.codeforbot` (default: op)
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Maven not found**: Install Maven using your package manager
+   ```bash
+   # Ubuntu/Debian
+   sudo apt install maven
+
+   # CentOS/RHEL
+   sudo yum install maven
+   ```
+
+2. **RCON not working**: Ensure RCON is enabled in your server.properties:
+   ```
+   enable-rcon=true
+   rcon.password=your_password
+   rcon.port=25575
+   ```
+
+3. **Plugin not loading**: Check the server console for error messages and ensure you're running Minecraft 1.20.1
+
+### Verification Steps
+
+1. Check if the plugin loaded successfully in server logs
+2. Verify the plugin appears in the `/plugins` command output
+3. Test the `/codeforbot` command as an operator
+
+## Development
+
+### Adding Features
+
+The main plugin class is located at:
+`src/main/java/com/example/TelegramRPG/TelegramRPG.java`
+
+Key methods to modify:
+- `initializeRCON()` - Add RCON functionality
+- `initializeTelegramBot()` - Add Telegram bot integration
+- `onCommand()` - Add new commands
+- `generateMonthlyCode()` - Modify code generation algorithm
+
+### Testing
+
+1. Set up a local Minecraft 1.20.1 server for testing
+2. Install the plugin
+3. Test all commands and functionality
+4. Verify RCON and Telegram integrations work as expected
+
+## Publishing
+
+To publish the plugin to Minecraft communities:
+
+1. Ensure all functionality works as expected
+2. Update the version in `pom.xml` and `plugin.yml`
+3. Build the final JAR using `mvn clean package`
+4. Follow the instructions in `PUBLISHING.md`
+
+## Support
+
+For support with this plugin:
+- Check the documentation in README.md
+- Review the setup guide (this file)
+- Verify your server configuration
+- Check server logs for error messages
 
 ## Contributing
-We welcome contributions! Please follow these steps to contribute:
 
+To contribute to this project:
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## License
-This project is licensed under [Choose your license] - see the [LICENSE](LICENSE) file for details.
-
-## Contact
-- Your Name - [your.email@example.com](mailto:your.email@example.com)
-- Project Link: [https://github.com/your-username/your-repo-name](https://github.com/your-username/your-repo-name)
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request with a clear description of your changes
